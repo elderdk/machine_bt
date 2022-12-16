@@ -17,6 +17,9 @@ def back_translate(text: str, slang: str, tlang: str) -> dict:
         "original_translation": tr,
         "back_translation": back_tr,
     }
+    
+def handler(event, context):
+    print(event)
 
 
 if __name__ == "__main__":
