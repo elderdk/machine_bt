@@ -2,7 +2,7 @@ from translator import trans
 from lang_handler import check_lang
 
 
-def back_translate(text: str, slang: str, tlang: str) -> dict:
+def back_translate(text: str, slang: str = 'ko', tlang: str = 'en') -> dict:
 
     check_result = check_lang(slang, tlang)
 
