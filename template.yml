@@ -24,12 +24,12 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
-  HelloWorld:
+  MachineBackTranslation:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-HelloWorld'
-      Handler: index.handler
-      Runtime: python3.7
+      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-machinebt'
+      Handler: main.back_translate
+      Runtime: python3.9
       Role:
         Fn::GetAtt:
         - LambdaExecutionRole
