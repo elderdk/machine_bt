@@ -27,7 +27,7 @@ Resources:
   MachineBackTranslation:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-machinebt'
+      FunctionName: !Sub '${ProjectId}-lambda'
       Handler: main.back_translate
       Runtime: python3.9
       Role:
