@@ -1,8 +1,9 @@
 from translator import trans
 from lang_handler import check_lang
+from token_handler import deserialzie_token
 
 
-def back_translate(text: str, slang: str = 'ko', tlang: str = 'en') -> dict:
+def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
 
     check_result = check_lang(slang, tlang)
 
@@ -17,9 +18,11 @@ def back_translate(text: str, slang: str = 'ko', tlang: str = 'en') -> dict:
         "original_translation": tr,
         "back_translation": back_tr,
     }
-    
+
+
 def handler(event, context):
-    print(event)
+
+    tokens = deserialzie_token(event["body"])
 
 
 if __name__ == "__main__":
