@@ -28,7 +28,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub '${ProjectId}-lambda'
-      Handler: main.back_translate
+      Handler: main.handler
       Runtime: python3.9
       Role:
         Fn::GetAtt:
