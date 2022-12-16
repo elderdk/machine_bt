@@ -21,7 +21,7 @@ def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
 
 
 def handler(event, context):
-
+    print(event)
     tokens = deserialzie_token(event["body"])
 
 
