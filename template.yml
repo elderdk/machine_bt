@@ -45,10 +45,7 @@ Resources:
           Properties:
             Path: /
             Method: post
-      Environment:
-        Variables:
-          GOOGLE_API_JSON: "{{resolve:ssm:GOOGLE_API_JSON}}"
-          PROJECT_ID: "{{resolve:ssm:PROJECT_ID}}"
+
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
