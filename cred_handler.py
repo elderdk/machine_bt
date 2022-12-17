@@ -29,7 +29,7 @@ def set_creds() -> str:
         project_id = os.getenv("PROJECT_ID")
 
     else:  # if AWS lambda envion
-        project_id = os.getenv("PROEJCT_ID")
+        project_id = os.environ["Project_ID"]
 
     return project_id
 
