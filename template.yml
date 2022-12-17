@@ -51,8 +51,10 @@ Resources:
             Method: post
       Environment:
         Variables:
-          GOOGLEAPIJSON: !Ref AWS::SSM::Parameter::GOOGLE_API_JSON
-          PROJECTID: !Ref AWS::SSM::Parameter::PROJECT_ID
+          # GOOGLEAPIJSON: !Ref AWS::SSM::Parameter::GOOGLE_API_JSON
+          # PROJECTID: !Ref AWS::SSM::Parameter::PROJECT_ID
+          GOOGLEAPIJSON: testing
+          PROJECTID: test
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
