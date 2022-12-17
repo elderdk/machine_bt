@@ -16,7 +16,7 @@ Parameters:
     Default: ''
   GOOGLEAPIJSON: 
     Type: AWS::SSM::Parameter
-  PROJECTID: 
+  GOOGLEPROJECTID: 
     Type: AWS::SSM::Parameter
 
 Globals:
@@ -52,7 +52,7 @@ Resources:
       Environment:
         Variables:
           GOOGLEAPIJSON: !Ref AWS::SSM::Parameter::GOOGLE_API_JSON
-          PROJECTID: !Ref AWS::SSM::Parameter::PROJECT_ID
+          GOOGLEPROJECTID: !Ref AWS::SSM::Parameter::PROJECT_ID
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
