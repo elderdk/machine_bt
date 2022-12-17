@@ -16,8 +16,12 @@ Parameters:
     Default: ''
   GOOGLEAPIJSON: 
     Type: AWS::SSM::Parameter
+    Description: JSON file containing Google Cloud Platform credentials
+    Default: ''
   GOOGLEPROJECTID: 
     Type: AWS::SSM::Parameter
+    Description: Google Cloud Platform project ID
+    Default: ''
 
 Globals:
   Function:
