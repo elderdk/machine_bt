@@ -28,7 +28,7 @@ def handler(event, context):
 if __name__ == "__main__":
     resp = back_translate("번역할 텍스트", slang="ko", tlang="en")
 
-    if resp["error"]:
+    if resp.get("error"):
         print(resp["error"])
     else:
         print(resp["original_translation"])
