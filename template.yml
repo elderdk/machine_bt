@@ -14,14 +14,6 @@ Parameters:
     Type: String
     Description: The name for a project pipeline stage, such as Staging or Prod, for which resources are provisioned and deployed.
     Default: ''
-  # GOOGLEAPIJSON: 
-  #   Type: AWS::SSM::Parameter
-  #   Description: JSON file containing Google Cloud Platform credentials
-  #   Default: ''
-  # GOOGLEPROJECTID: 
-  #   Type: AWS::SSM::Parameter
-  #   Description: Google Cloud Platform project ID
-  #   Default: ''
 
 Globals:
   Function:
@@ -55,8 +47,6 @@ Resources:
             Method: post
       Environment:
         Variables:
-          # GOOGLEAPIJSON: !Ref AWS::SSM::Parameter::GOOGLE_API_JSON
-          # GOOGLEPROJECTID: !Ref AWS::SSM::Parameter::PROJECT_ID
           GOOGLE_API_JSON: "{{resolve:ssm:GOOGLE_API_JSON}}"
           PROJECT_ID: "{{resolve:ssm:PROJECT_ID}}"
   LambdaExecutionRole:
