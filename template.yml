@@ -14,6 +14,10 @@ Parameters:
     Type: String
     Description: The name for a project pipeline stage, such as Staging or Prod, for which resources are provisioned and deployed.
     Default: ''
+  GOOGLE_API_JSON: 
+    Type: SecureString
+  PROJECT_ID: 
+    Type: String
 
 Globals:
   Function:
@@ -45,6 +49,10 @@ Resources:
           Properties:
             Path: /
             Method: post
+      Environment:
+        Variables:
+          GOOGLE_API_JSON: !Ref AWS::SSM::Parameter::GOOGLE_API_JSON
+          PROJECT_ID: !Ref AWS::SSM::Parameter::PROJECT_ID
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
