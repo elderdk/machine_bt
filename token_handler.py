@@ -1,8 +1,12 @@
 import base64
+from typing import Union
 
-
-def deserialzie_token(token: str) -> dict:
-    token_list = base64.b64decode(token).decode('utf-8').split('&')
+def deserialzie_token(token: Union[str, bytes]) -> dict:
+    
+    if type(token) == 'bytes':
+        token_list = base64.b64decode(token).decode('utf-8').split('&')
+    else:
+        token_list = token.split('&')
     
     payload = {}
     for i in token_list:
