@@ -9,7 +9,7 @@ def trans(text, slang, tlang):
     """
     project_id = set_creds()
 
-    parent = f"projects/{project_id}"
+    parent = f"projects/{project_id}/locations/global"
     client = translate.TranslationServiceClient()
 
     response = client.translate_text(
