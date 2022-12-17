@@ -1,6 +1,8 @@
 from translator import trans
 from lang_handler import check_lang
 from token_handler import deserialzie_token
+from urllib import parse
+from slack_handler import get_block
 
 
 def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
@@ -14,22 +16,29 @@ def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
     back_tr = trans(tr, tlang, slang)
 
     return {
-        "original text": text,
+        "original_text": text,
         "original_translation": tr,
         "back_translation": back_tr,
     }
 
 
 def handler(event, context):
-    print(event)
-    tokens = deserialzie_token(event["body"])
-
+    
+    # tokens = deserialzie_token(unquote(event["body"], encoding='utf-8'))
+    tokens = deserialzie_token(parse.unquote_plus(event['body']))
+    text = tokens['text']
+    slang = 'ko'
+    tlang = 'en'
+    
+    response = back_translate(text, slang, tlang)
+    
+    block = get_block(response)
+    print(block)
+    return {
+        'statusCode': 200,
+        'body': block
+    }
+    
 
 if __name__ == "__main__":
-    resp = back_translate("번역할 텍스트", slang="ko", tlang="en")
-
-    if resp.get("error"):
-        print(resp["error"])
-    else:
-        print(resp["original_translation"])
-        print(resp["back_translation"])
+    pass
