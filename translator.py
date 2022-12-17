@@ -8,7 +8,7 @@ def trans(text, slang, tlang):
     This is a wrapper for google.cloud translate.
     """
     project_id = set_creds()
-    assert project_id
+
     parent = f"projects/{project_id}"
     client = translate.TranslationServiceClient()
 
