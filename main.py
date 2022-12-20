@@ -30,6 +30,7 @@ def handler(event, context):
     tlang = 'en'
     
     response = back_translate(text, slang, tlang)
+    response = parse.unquote_plus(response)
 
     return {
         "statusCode": 200,
@@ -38,10 +39,4 @@ def handler(event, context):
     
 
 if __name__ == "__main__":
-    a = handler({"body": "이 텍스트 번역 해 주세요."}, {})
-    print(a['message'])
-
-# remove slack related functions to detach the main api from slack process
-# for slack, make separate two lambda fnctions (one to receive, another to process)
-# research into lambda asynchronous execution using http header
-
+    pass
