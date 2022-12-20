@@ -25,12 +25,12 @@ def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
 
 def handler(event, context):
     
-    text = event['body']
+    text = parse.unquote_plus(event['body'])
     slang = 'ko'
     tlang = 'en'
     
     response = back_translate(text, slang, tlang)
-    response = parse.unquote_plus(response)
+    
 
     return {
         "statusCode": 200,
