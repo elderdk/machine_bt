@@ -1,8 +1,9 @@
 from translator import trans
 from lang_handler import check_lang
-from token_handler import deserialzie_token
+
 from urllib import parse
-from slack_handler import get_block
+
+import json
 
 
 def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
@@ -24,18 +25,16 @@ def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
 
 def handler(event, context):
     
-    tokens = deserialzie_token(parse.unquote_plus(event['body']['text']))
-    text = tokens['text']
+    text = parse.unquote_plus(event['body']['text'])
     slang = event['body']['slang']
     tlang = event['body']['tlang']
     
     response = back_translate(text, slang, tlang)
     
-    block = get_block(response)
-    print(block)
+
     return {
-        'statusCode': 200,
-        'body': block
+        "statusCode": 200,
+        "body": json.dumps(response)
     }
     
 
