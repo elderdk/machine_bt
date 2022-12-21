@@ -26,9 +26,12 @@ def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
 def handler(event, context):
     
     print(event)
-    text = parse.unquote_plus(event['body']['text'])
-    slang = event['body']['slang']
-    tlang = event['body']['tlang']
+    
+    body = json.loads(event['body'])
+    
+    text = parse.unquote_plus(body['text'])
+    slang = body['slang']
+    tlang = body['tlang']
     
     response = back_translate(text, slang, tlang)
     
