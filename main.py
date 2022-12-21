@@ -24,10 +24,10 @@ def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
 
 def handler(event, context):
     
-    tokens = deserialzie_token(parse.unquote_plus(event['body']))
+    tokens = deserialzie_token(parse.unquote_plus(event['body']['text']))
     text = tokens['text']
-    slang = 'ko'
-    tlang = 'en'
+    slang = event['body']['slang']
+    tlang = event['body']['tlang']
     
     response = back_translate(text, slang, tlang)
     
