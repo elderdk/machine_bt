@@ -25,6 +25,7 @@ def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
 
 def handler(event, context):
     
+    print(event)
     text = parse.unquote_plus(event['body']['text'])
     slang = event['body']['slang']
     tlang = event['body']['tlang']
