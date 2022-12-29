@@ -7,8 +7,8 @@ import json
 
 def back_translate(text: str) -> dict:
 
-    slang, tlang, tr = trans(text)
-    back_tr = trans(tr, tlang, slang)
+    tr = trans(text)
+    back_tr = trans(tr)
 
     return {
         "original_text": text,

@@ -27,12 +27,9 @@ def trans(text, slang=None, tlang=None):
         parent=parent,
     )
 
-    return (
-        slang, 
-        tlang, 
-        response.translations[0].translated_text
-        )
+    return  response.translations[0].translated_text
 
 
 if __name__ == "__main__":
     resp = trans("테스트 입니다.", "ko", "en")
+    print(resp)
