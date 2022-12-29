@@ -38,3 +38,4 @@ if __name__ == "__main__":
     content = handler(
         {"body": '{"text": "this is a test."}'}, {}
         )
+    print(content)
