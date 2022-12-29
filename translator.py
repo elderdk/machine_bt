@@ -2,7 +2,7 @@ from cred_handler import set_creds
 from google.cloud import translate
 
 
-def trans(text, slang, tlang):
+def trans(text):
     """Translate the text.
 
     This is a wrapper for google.cloud translate.
@@ -12,6 +12,13 @@ def trans(text, slang, tlang):
     parent = f"projects/{project_id}/locations/global"
     client = translate.TranslationServiceClient()
 
+    slang = client.detect_language(content=text, parent=parent, mime_type="text/plain").get("language_code")
+
+    if slang == "ko":
+        tlang = "en"
+    elif slang == "en":
+        tlang = "ko"
+
     response = client.translate_text(
         contents=[text],
         source_language_code=slang,
@@ -19,8 +26,12 @@ def trans(text, slang, tlang):
         parent=parent,
     )
 
-    return response.translations[0].translated_text
+    return (
+        slang, 
+        tlang, 
+        response.translations[0].translated_text
+        )
 
 
 if __name__ == "__main__":
-    pass
+    resp = trans("테스트 입니다.", "ko", "en")

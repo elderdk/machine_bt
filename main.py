@@ -1,19 +1,13 @@
 from translator import trans
-from lang_handler import check_lang
 
 from urllib import parse
 
 import json
 
 
-def back_translate(text: str, slang: str = "ko", tlang: str = "en") -> dict:
+def back_translate(text: str) -> dict:
 
-    check_result = check_lang(slang, tlang)
-
-    if not check_result["okay"]:
-        return {"error": check_result["message"]}
-
-    tr = trans(text, slang, tlang)
+    slang, tlang, tr = trans(text)
     back_tr = trans(tr, tlang, slang)
 
     return {
@@ -30,10 +24,8 @@ def handler(event, context):
     body = json.loads(event['body'])
     
     text = parse.unquote_plus(body['text'])
-    slang = body['slang']
-    tlang = body['tlang']
     
-    response = back_translate(text, slang, tlang)
+    response = back_translate(text)
     
 
     return {
@@ -43,4 +35,6 @@ def handler(event, context):
     
 
 if __name__ == "__main__":
-    pass
+    content = handler(
+        {"body": '{"text": "this is a test."}'}, {}
+        )
